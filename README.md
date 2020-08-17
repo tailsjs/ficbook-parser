@@ -91,6 +91,6 @@ await ficbook.getRequest(id)
 ### Ошибки:
 Может выдать ошибку
 ```js
-There is no such author!
+There is no such (something)!
 ```
-Если автор не был найден!
+Если что-то не было найдено!
