@@ -1,0 +1,31 @@
+{
+  "name": "ficbook-parser",
+  "version": "1.0.0",
+  "description": "Парсер фанфиков с ficbook.net",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tailsjs/ficbook-parser.git"
+  },
+  "keywords": [
+    "ficbook",
+    "parser",
+    "фикбук",
+    "книга фанфиков",
+    "фанфик",
+    "api"
+  ],
+  "author": "tailsjs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tailsjs/ficbook-parser/issues"
+  },
+  "homepage": "https://github.com/tailsjs/ficbook-parser#readme"
+}
