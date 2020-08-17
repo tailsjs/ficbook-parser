@@ -1,7 +1,6 @@
-# shrtco.de
-Library for shrtco.de API
+# ficbook-parser
+Парсер фанфиков с ficbook.net
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9cc6d03e97464f84b80dd87bda36c07e)](https://www.codacy.com/app/tailsjs/shrtco.de?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tailsjs/shrtco.de&amp;utm_campaign=Badge_Grade)
 ## Installing
 * NPM
 `
@@ -12,126 +11,86 @@ npm install shrtco.de
 yarn add shrtco.de
 `
 
-## Using
+## Использование
 ```js
-let shrtcode = require("shrtco.de") 
+let ficbook = require("ficbook-parser") 
 ```
 
-### Methods
-Shorten a link
+### Методы
+Информация о фанфике
 ```js
-shrtcode.shorten(link)
+await ficbook.getFic(id)
 ```
-|Argument|Type|Required|Description|
+|Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|link|string|true|Link for shorting|
-Return:
+|id|string|true|ID фанфика|
+Возвращается:
 ```js
 {
-　"ok": true,
-　"result": {
-　　"code": "z2d2o",
-　　"short_link": "shrtco.de/z2d2o",
-　　"full_short_link": "https://shrtco.de/z2d2o",
-　　"short_link2": "9qr.de/z2d2o",
-　　"full_short_link2": "https://9qr.de/z2d2o",
-　　"share_link": "shrtco.de/share/z2d2o",
-　　"full_share_link": "https://shrtco.de/share/z2d2o",
-　　"original_link": "http://example.org/very/long/link.html"
-　}
+  success: true,
+  name: 'Если деинсталлиться, то вместе',
+  id: 1,
+  url: 'https://ficbook.net/readfic/1',
+  // Много информации. ОЧЕНЬ
 }
 ```
-Get infos on a short link by some code
+Информация о авторе
 ```js
-shrtcode.info(code) 
+await ficbook.getAuthor(id)
 ```
-|Argument|Type|Required|Description|
+|Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|code|string|true|Code for info about shorten link|
-Return:
+|id|string|true|ID автора|
+Возвращается:
 ```js
 {
-　"ok": true,
-　"result": {
-　　"code": "example",
-　　"url": "http://www.example.com/",
-　　"password_protected": false,
-　　"blocked": false,
-　　"created": "2018-05-17 16:46:29",
-　　"timestamp": 1526568389
-　}
+  success: true,
+  name: 'Entrery',
+  id: 1,
+  url: 'https://ficbook.net/authors/1',
+  favorite_readers: 504,
+  works: 0,
+  coauthor: 0,
+  beta: 0,
+  gamma: 0,
+  requ: 1,
+  collections: 1,
+  gifts: 23,
+  about: '',
+  contact: '',
+  online: false
 }
 ```
-Shorten a link with custom code
+Информация о заявках
 ```js
-shrtcode.customShorten(link, code) 
+await ficbook.getRequest(id)
 ```
-|Argument|Type|Required|Description|
+|Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|link|string|true|Link for shorting|
-|-|-|-|-|
-|code|string|true|Your code for shorted url|
-Return:
+|id|string|true|ID запроса|
+Возвращается:
 ```js
 {
-  ok: true,
-  result: {
-    code: 'example',
-    short_link: 'shrtco.de/example',
-    full_short_link: 'https://shrtco.de/example',
-    short_link2: '9qr.de/example',
-    full_short_link2: 'https://9qr.de/example',
-    share_link: 'shrtco.de/share/shrtcode_example767837',
-    full_share_link: 'https://shrtco.de/share/example',
-    original_link: 'http://example.com'
-  }
+  success: true,
+  name: 'Айрис и Рокэ приглядываются друг к другу, и Росио решает, что Мирабелла в тещах не так уж и страшно',
+  id: 1,
+  url: 'https://ficbook.net/requests/1',
+  author: 'Гусар на крыше',
+  interested: '32',
+  works_done: '2',
+  marks: '13',
+  fandoms: [ 'Камша Вера «Отблески Этерны»' ],
+  characters: [ 'Рокэ/Айрис', ' Ричард мимо пробегал.' ],
+  direction: 'Гет',
+  tags: [ 'Романтика', 'Юмор' ],
+  rating: 'PG-13R',
+  description: 'Таймлан - не позднее ЛП. Айрис ревнует Ворона ко всему, что движется - к Катарине, Селине, Луизе, Дораку, королю и брату, громко заявляет, что Ворон - ЕЕ жених. Лучше всего с R и ХЭ, но это уже на усмотрение автора.'
 }
 ```
-Shorten a link by emoji
+
+### Ошибки:
+Может выдать ошибку
 ```js
-shrtcode.emojiCode(link)
+There is no such author!
 ```
-|Argument|Type|Required|Description|
-|-|-|-|-|
-|link|string|true|Link for shorting|
-Return:
-```js
-{
-  ok: true,
-  result: {
-    code: '��',
-    short_link: 'shrtco.de/��',
-    full_short_link: 'https://shrtco.de/��',
-    short_link2: '9qr.de/��',
-    full_short_link2: 'https://9qr.de/��',
-    share_link: 'shrtco.de/share/��',
-    full_share_link: 'https://shrtco.de/share/��',
-    original_link: 'http://example.com'
-  }
-}
-```
-Shorten a link with password
-```js
-shrtcode.passShort(link, pass) 
-```
-|Argument|Type|Required|Description|
-|-|-|-|-|
-|link|string|true|Link for shorting|
-|-|-|-|-|
-|pass|string|true|Your password for shorted url|
-Return:
-```js
-{
-  ok: true,
-  result: {
-    code: 'BnNeu',
-    short_link: 'shrtco.de/BnNeu',
-    full_short_link: 'https://shrtco.de/BnNeu',
-    short_link2: '9qr.de/BnNeu',
-    full_short_link2: 'https://9qr.de/BnNeu',
-    share_link: 'shrtco.de/share/BnNeu',
-    full_share_link: 'https://shrtco.de/share/BnNeu',
-    original_link: 'http://example.com'
-  }
-}
-```
+Если автор не был найден!
