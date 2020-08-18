@@ -1,4 +1,5 @@
 var fetch = require("node-fetch");
+	MODULE_VERSION = "1.1"
 class APIError extends Error {
 /**
 * @param {Object} params - Параметры ошибки
@@ -26,8 +27,21 @@ async function getFic(id) {
 			code: 1,
 			message: result.error
 		});
-	};
-	
+	};	
+};
+async function getChangelogs() {
+	let result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/changelogs`)).json())
+	if (result.success === true){
+		if(result.MODULE.VERSION != MODULE_VERSION){
+			console.log(`Your version of the "ficbook-parser" module is out of date! We ask you to update it. NEW VERSION: ${result.MODULE.VERSION}, YOUR VERSION: ${MODULE_VERSION}`)
+		}
+		return result;
+	} else {
+		throw new APIError({
+			code: 1,
+			message: result.error
+		});
+	};	
 };
 async function getAuthor(id) {
 	try{
@@ -68,5 +82,6 @@ async function getRequest(id) {
 module.exports = {
 	getFic,
 	getAuthor,
+	getChangelogs,
 	getRequest
 };

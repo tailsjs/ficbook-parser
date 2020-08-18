@@ -81,13 +81,27 @@ await ficbook.getRequest(id)
   marks: '13',
   fandoms: [ 'Камша Вера «Отблески Этерны»' ],
   characters: [ 'Рокэ/Айрис', ' Ричард мимо пробегал.' ],
-  direction: 'Гет',
+  direction: ['Гет'],
   tags: [ 'Романтика', 'Юмор' ],
-  rating: 'PG-13R',
+  rating: ['PG-13' ,'R'],
   description: 'Таймлан - не позднее ЛП. Айрис ревнует Ворона ко всему, что движется - к Катарине, Селине, Луизе, Дораку, королю и брату, громко заявляет, что Ворон - ЕЕ жених. Лучше всего с R и ХЭ, но это уже на усмотрение автора.'
 }
 ```
-
+Получить журнал изменений
+```js
+await ficbook.getChangelogs()
+```
+Возвращается:
+```js
+{
+  success: true,
+  MODULE: { VERSION: '1.1', LOGS: 'Changelogs! getChangelogs()' },
+  SERVER: {
+    VERSION: '1.1',
+    LOGS: 'Now the "direction" and "rating" fields in the getRequest() method return an array instead of a string as they did in sv1.0'
+  }
+}
+```
 ### Ошибки:
 Может выдать ошибку
 ```js
