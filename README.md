@@ -1,6 +1,10 @@
 # ficbook-parser
 Парсер фанфиков с ficbook.net
 
+- Первый в своём роде.
+- Тайпинги.
+- Своё API.
+
 ## Installing
 * NPM
 `
@@ -104,6 +108,22 @@ await ficbook.getChangelogs()
     VERSION: '1.1',
     LOGS: 'Now the "direction" and "rating" fields in the getRequest() method return an array instead of a string as they did in sv1.0'
   }
+}
+```
+Получить часть из фанфика
+```js
+await ficbook.getFicPart()
+```
+Возвращается:
+```js
+{
+  success: true,
+  name: "Example",
+  id: 14,
+  url: "https://ficbook.net/readfic/14",
+  links: ["well, links"],
+  parts_length: 14,
+  parts: "Some part."
 }
 ```
 ### Ошибки:

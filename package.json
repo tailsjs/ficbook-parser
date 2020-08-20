@@ -1,6 +1,6 @@
 {
   "name": "ficbook-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Парсер фанфиков с ficbook.net",
   "main": "index.js",
   "dependencies": {
@@ -27,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/tailsjs/ficbook-parser/issues"
   },
-  "homepage": "https://github.com/tailsjs/ficbook-parser#readme"
+  "homepage": "https://github.com/tailsjs/ficbook-parser#readme",
+  "typings": "./"
 }

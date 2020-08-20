@@ -1,5 +1,5 @@
 var fetch = require("node-fetch");
-	MODULE_VERSION = "1.2"
+	MODULE_VERSION = "1.3"
 class APIError extends Error {
 /**
 * @param {Object} params - Параметры ошибки
@@ -61,6 +61,24 @@ async function getAuthor(id, getComms) {
 		});
 	};
 };
+async function getFicPart(id, part) {
+	try{
+	var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/ficparts?id=${id}&part=${part}`)).json());
+	}catch(e){
+		throw new APIError({
+			code: 1,
+			message: "There is no such part!"
+		});	
+	}
+	if (result.success === true){
+		return result;
+	} else {
+		throw new APIError({
+			code: 1,
+			message: result.error
+		});
+	};
+};
 async function getRequest(id) {
 	try{
 		var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/requests?id=${id}`)).json());
@@ -83,5 +101,6 @@ module.exports = {
 	getFic,
 	getAuthor,
 	getChangelogs,
-	getRequest
+	getRequest,
+	getFicPart
 };
