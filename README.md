@@ -114,6 +114,10 @@ await ficbook.getChangelogs()
 ```js
 await ficbook.getFicPart()
 ```
+|Аргумент|Тип|Нужен|Описание|
+|-|-|-|-|
+|id|number|true|ID фанфика|
+|part|number|true|Номер части|
 Возвращается:
 ```js
 {

@@ -1,6 +1,6 @@
 {
   "name": "ficbook-parser",
-  "version": "1.0.3",
+  "version": "1.0.3-rc1",
   "description": "Парсер фанфиков с ficbook.net",
   "main": "index.js",
   "dependencies": {
