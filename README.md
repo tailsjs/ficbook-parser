@@ -19,11 +19,12 @@ let ficbook = require("ficbook-parser")
 ### Методы
 Информация о фанфике
 ```js
-await ficbook.getFic(id)
+await ficbook.getFic(id, random)
 ```
 |Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|id|string|true|ID фанфика|
+|id|number|true|ID фанфика|
+|random|boolean|false|получить рандомный фанфик?|
 Возвращается:
 ```js
 {
@@ -36,11 +37,12 @@ await ficbook.getFic(id)
 ```
 Информация о авторе
 ```js
-await ficbook.getAuthor(id)
+await ficbook.getAuthor(id, getComms)
 ```
 |Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|id|string|true|ID автора|
+|id|number|true|ID автора|
+|getComms|boolean|false|Получить комменты?|
 Возвращается:
 ```js
 {
@@ -58,7 +60,8 @@ await ficbook.getAuthor(id)
   gifts: 23,
   about: '',
   contact: '',
-  online: false
+  online: false,
+  comments: []
 }
 ```
 Информация о заявках
@@ -67,7 +70,7 @@ await ficbook.getRequest(id)
 ```
 |Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
-|id|string|true|ID запроса|
+|id|number|true|ID запроса|
 Возвращается:
 ```js
 {
@@ -76,6 +79,7 @@ await ficbook.getRequest(id)
   id: 1,
   url: 'https://ficbook.net/requests/1',
   author: 'Гусар на крыше',
+  premium: false,
   interested: '32',
   works_done: '2',
   marks: '13',

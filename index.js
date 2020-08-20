@@ -1,5 +1,5 @@
 var fetch = require("node-fetch");
-	MODULE_VERSION = "1.1"
+	MODULE_VERSION = "1.2"
 class APIError extends Error {
 /**
 * @param {Object} params - Параметры ошибки
@@ -18,8 +18,8 @@ this.name = this.constructor.name;
 Error.captureStackTrace(this, this.constructor);
 }
 }
-async function getFic(id) {
-	let result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/fanfic?id=${id}`)).json())
+async function getFic(id, random) {
+	var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/fanfic?id=${id}${random ? `&random=true` : ""}`)).json())
 	if (result.success === true){
 		return result;
 	} else {
@@ -30,7 +30,7 @@ async function getFic(id) {
 	};	
 };
 async function getChangelogs() {
-	let result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/changelogs`)).json())
+	var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/changelogs`)).json())
 	if (result.success === true){
 		if(result.MODULE.VERSION != MODULE_VERSION){
 			console.log(`Your version of the "ficbook-parser" module is out of date! We ask you to update it. NEW VERSION: ${result.MODULE.VERSION}, YOUR VERSION: ${MODULE_VERSION}`)
@@ -43,9 +43,9 @@ async function getChangelogs() {
 		});
 	};	
 };
-async function getAuthor(id) {
+async function getAuthor(id, getComms) {
 	try{
-	let result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/authors?id=${id}`)).json());
+	var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/authors?id=${id}${getComms ? `&comments=true` : ""}`)).json());
 	}catch(e){
 		throw new APIError({
 			code: 1,
@@ -63,7 +63,7 @@ async function getAuthor(id) {
 };
 async function getRequest(id) {
 	try{
-	let result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/requests?id=${id}`)).json());
+		var result = (await (await fetch(`https://ficbook-parser-server-part.herokuapp.com/requests?id=${id}`)).json());
 	}catch(e){
 		throw new APIError({
 			code: 1,
