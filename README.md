@@ -112,7 +112,7 @@ await ficbook.getChangelogs()
 ```
 Получить часть из фанфика
 ```js
-await ficbook.getFicPart()
+await ficbook.getFicPart(id, part)
 ```
 |Аргумент|Тип|Нужен|Описание|
 |-|-|-|-|
