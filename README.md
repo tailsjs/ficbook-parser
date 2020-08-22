@@ -5,14 +5,14 @@
 - Тайпинги.
 - Своё API.
 
-## Installing
+## Установка
 * NPM
 `
-npm install shrtco.de
+npm install ficbook-parser
 `
 * YARN
 `
-yarn add shrtco.de
+yarn add ficbook-parser
 `
 
 ## Использование
